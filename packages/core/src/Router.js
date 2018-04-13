@@ -2,9 +2,8 @@ import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { Navbar, Nav, NavItem, Button, Grid } from 'react-bootstrap';
-// import Loadable from 'react-loadable';
+import Loadable from 'react-loadable';
 import PropTypes from 'prop-types';
-
 
 const Loading = () => <div className="c-loader" />;
 
@@ -13,10 +12,10 @@ const Loading = () => <div className="c-loader" />;
 //     loading: Loading
 // });
 
-// const About = Loadable({
-//     loader: () => import('./routes/About/index'),
-//     loading: Loading
-// });
+const EngQuotes = Loadable({
+    loader: () => import('@rrsd/quotes-eng'),
+    loading: Loading
+});
 
 const AppRouter = ({ isLoggedIn, logout, login }) => {
     return (
@@ -44,8 +43,9 @@ const AppRouter = ({ isLoggedIn, logout, login }) => {
             </Navbar>;
             <Grid>
                 <Route exact path="/ru" component={Loading} />
-                <Route path="/en" component={Loading} />
+                <Route path="/en" component={EngQuotes} />
             </Grid>
+            <EngQuotes/>
         </Fragment>
     </Router>
 )};

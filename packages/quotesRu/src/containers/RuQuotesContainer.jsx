@@ -15,6 +15,5 @@ const mapPrivateDispatchToProps = {
 
 export default compose(
     withSubStore('')(mapPrivateStateToProps, mapPrivateDispatchToProps),
-    connect(mapStateToProps, mapDispatchToProps),
-    withTracking,
+    connect(mapStateToProps, mapDispatchToProps)
 );
