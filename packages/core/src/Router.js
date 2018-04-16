@@ -1,51 +1,45 @@
 import React, { Fragment } from 'react';
-import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { Navbar, Nav, NavItem, Button, Grid } from 'react-bootstrap';
+import { Navbar, Button, Grid } from 'react-bootstrap';
 import Loadable from 'react-loadable';
-import PropTypes from 'prop-types';
+
+import User from './User';
 
 const Loading = () => <div className="c-loader" />;
 
-// const Home = Loadable({
-//     loader: () => import('./routes/Home/index'),
-//     loading: Loading
-// });
-
-const EngQuotes = Loadable({
-    loader: () => import('@rrsd/quotes-eng'),
+const DadJokes = Loadable({
+    loader: () => import('@rrsd/dad-joke'),
     loading: Loading
 });
 
-const AppRouter = ({ isLoggedIn, logout, login }) => {
+const Stories = Loadable({
+    loader: () => import('@rrsd/stories'),
+    loading: Loading
+});
+
+
+const AppRouter = ({ isLoggedIn, logout, login, thumbnail, user }) => {
     return (
     <Router>
         <Fragment>
             <Navbar>
-                <Navbar.Header>
-                    <Navbar.Brand>
-                        <Link to="/">Quotes App</Link>
-                    </Navbar.Brand>
-                </Navbar.Header>
-                <Nav>
-                    <NavItem>
-                        <Link to="/ru">Russian</Link>
-                    </NavItem>
-                    <NavItem>
-                        <Link to="/en">English</Link>
-                    </NavItem>
-                </Nav>
+                <ul className='nav navbar-nav'>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/jokes">Jokes</Link></li>
+                    <li><Link to="/stories">Stories</Link></li>
+                </ul>
                 <Navbar.Collapse>
                     <Navbar.Form pullRight>
                         {isLoggedIn ? <Button onClick={logout}>Logout</Button> : <Button onClick={login}>Login</Button>}
                     </Navbar.Form>
+                    { thumbnail && <img className='thumbnail navbar-right' src={thumbnail} alt='' /> }
                 </Navbar.Collapse>
-            </Navbar>;
+            </Navbar>
             <Grid>
-                <Route exact path="/ru" component={Loading} />
-                <Route path="/en" component={EngQuotes} />
+                <Route exact path="/" render={() => <User isLoggedIn={isLoggedIn} user={user} />} />
+                <Route exact path="/jokes" component={DadJokes} />
+                <Route path="/stories" component={Stories} />
             </Grid>
-            <EngQuotes/>
         </Fragment>
     </Router>
 )};

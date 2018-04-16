@@ -5,3 +5,9 @@
     margin: 150px auto;
     background-size: 100%;
 }
+
+.thumbnail {
+    border-radius: 30px;
+    margin: 0;
+    padding: 0;
+}

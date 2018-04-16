@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import hoistNonReactStatic from 'hoist-non-react-statics';
 
 import dispatchHelper from './dispatchHelper';
 
@@ -35,7 +36,7 @@ export const withSubStore = subStoreKey => (mapStateToProps, mapDispatchToProps)
         SubConnect.contextTypes = {
             [subStoreKey]: PropTypes.object
         };
-
+        hoistNonReactStatic(SubConnect, WrappedComponent);
         return SubConnect;
     };
 };

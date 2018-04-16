@@ -3,5 +3,8 @@
   "version": "1.0.0",
   "main": "src/index.js",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "hoist-non-react-statics": "^2.5.0"
+  }
 }

@@ -1,15 +1,16 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import random from 'lodash/random';
+import axios from 'axios';
 
 import { userFetchFailed, userFetchSuccess } from './actionCreators';
 import { FETCH } from './actions';
 
 function* fetchUser() {
     try {
-        const userId = random(1, 12);
-        const result = yield call(fetch, `https://reqres.in/api/users/${userId}`);
-        const { data } = yield result.json();
-        yield put(userFetchSuccess(data));
+        const { data: { results } } = yield call(axios, `https://randomuser.me/api/`);
+        if (results.length > 0) {
+            const user = results[0]
+            yield put(userFetchSuccess(user));
+        }
     } catch (e) {
         yield put(userFetchFailed());
     }

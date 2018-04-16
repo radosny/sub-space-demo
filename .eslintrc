@@ -1,0 +1,70 @@
+{
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "plugins": [
+    "react",
+    "flowtype"
+  ],
+  "extends": [
+    "plugin:flowtype/recommended",
+    "plugin:react/recommended",
+    "react-app"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "require-yield": 0,
+    "jsx-quotes": [
+      "error",
+      "prefer-single"
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ],
+    "eqeqeq": [
+      "error",
+      "always"
+    ],
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "never",
+        "objects": "never",
+        "imports": "never",
+        "exports": "never",
+        "functions": "ignore"
+      }
+    ],
+    "eol-last": [
+      "error",
+      "always"
+    ],
+    "arrow-parens": [
+      1,
+      "as-needed"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "no-unused-vars": "error",
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "react/prop-types": 0,
+    "react/no-unknown-property": 0,
+    "flowtype/no-types-missing-file-annotation": 0,
+    "react/display-name": 0
+  }
+}

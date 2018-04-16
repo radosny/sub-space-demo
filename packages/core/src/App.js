@@ -6,7 +6,7 @@ import './App.css';
 import AppRouter from './Router';
 import store from './store';
 import { fetchUser, resetUser } from './store/actionCreators';
-import { isLoggedIn } from './store/selectors';
+import { isLoggedIn, getThumbnail, getUserName } from './store/selectors';
 
 const mapDispatchToProps = {
     login: fetchUser,
@@ -14,7 +14,9 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = state => ({
-    isLoggedIn: isLoggedIn(state)
+    isLoggedIn: isLoggedIn(state),
+    thumbnail: getThumbnail(state),
+    user: getUserName(state)
 });
 
 const AppContainer = connect(mapStateToProps, mapDispatchToProps)(AppRouter);
