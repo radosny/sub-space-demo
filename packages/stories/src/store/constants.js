@@ -1,1 +1,1 @@
-export const PREFIX = 'engQuotes';
+export const PREFIX = 'stories';
