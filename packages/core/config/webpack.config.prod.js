@@ -116,6 +116,10 @@ module.exports = {
       {
         test: /\.(js|jsx|mjs)$/,
         enforce: 'pre',
+        include: [paths.appSrc, (name) => {
+          // console.log('name: ', name, /packages\/[a-zA-Z0-9-_]*?\/src/.test(name));
+          return /packages\/[a-zA-Z0-9-_]*?\/src/.test(name);
+        }],
         use: [
           {
             options: {
@@ -125,8 +129,7 @@ module.exports = {
             },
             loader: require.resolve('eslint-loader'),
           },
-        ],
-        include: paths.appSrc,
+        ]
       },
       {
         // "oneOf" will traverse all following loaders until one will
@@ -146,11 +149,15 @@ module.exports = {
           // Process JS with Babel.
           {
             test: /\.(js|jsx|mjs)$/,
-            include: paths.appSrc,
+            include: [paths.appSrc, (name) => {
+              return /packages\/[a-zA-Z0-9-_]*?\/src/.test(name);
+            }],
             loader: require.resolve('babel-loader'),
             options: {
               
               compact: true,
+              presets: ['babel-preset-es2015', 'babel-preset-stage-0',
+                    'babel-preset-react'].map(require.resolve)
             },
           },
           // The notation here is somewhat confusing.

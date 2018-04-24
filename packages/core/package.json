@@ -4,6 +4,8 @@
   "main": "src/index.js",
   "private": true,
   "dependencies": {
+    "@rrsd/dad-joke": "^1.0.0",
+    "@rrsd/stories": "^1.0.0",
     "autoprefixer": "7.1.6",
     "axios": "^0.18.0",
     "babel-core": "6.26.0",
